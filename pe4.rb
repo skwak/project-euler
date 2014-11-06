@@ -4,7 +4,7 @@ class PalinDoom
   def initialize
     @final_array = []
     @first_array = [*100..999]
-    @second_array = [*10..999]
+    @second_array = [*100..999]
   end
 
   def is_palindrome?(product)
@@ -27,4 +27,4 @@ end
 
 palindrome = PalinDoom.new
 palindrome.three_digits
-palindrome.final_array.sort
+puts palindrome.final_array.sort

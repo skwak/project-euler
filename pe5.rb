@@ -36,6 +36,7 @@
           if num % n == 0
            #figure out how to push n more than once if necessary
             @arr << n
+            @arr << n if num / n == n
             @arr.delete(num)
           end
           @arr

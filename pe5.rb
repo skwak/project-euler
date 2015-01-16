@@ -9,11 +9,11 @@ def greatest_common_factor(a, b)
   factors = []
   factors2 = []
   factors3 = []
-  (1..a).each do |num|
+  (2..a).each do |num|
     factors << num if a % num == 0
   end
 
-  (1..b).each do |num|
+  (2..b).each do |num|
     factors2 << num if b % num == 0
   end
 
@@ -24,6 +24,7 @@ def greatest_common_factor(a, b)
   @max_factor = factors3.max
 end
 
-def lowest_common_multiple
+def least_common_multiple
   
 end
+

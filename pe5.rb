@@ -26,6 +26,7 @@
     end
     
     @max_factor = @factors3.max
+    @max_factor = 1 if @max_factor.nil?
   end
 
   #greatest common factor of 8 and 20 is 4
@@ -34,5 +35,7 @@
     (a*b)/@max_factor
   end
 
-#test this out
-least_common_multiple(8, 20)
+  def find_lcm_of_big_array(arr)
+  end
+  
+  

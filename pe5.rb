@@ -26,21 +26,13 @@
     end
     
     @max_factor = @factors3.max
-    @factors3
   end
 
-    def least_common_multiple(arr)
-      @arr = arr
-      @arr.each do |num|
-        (2..num-1).each do |n|
-          if num % n == 0
-           #figure out how to push n more than once if necessary
-            @arr << n
-            @arr << n if num / n == n
-            @arr.delete(num)
-          end
-          @arr
-        end
-      end 
-    end  
+  #greatest common factor of 8 and 20 is 4
+  def least_common_multiple(a, b)
+    greatest_common_factor(a, b)
+    (a*b)/@max_factor
+  end
 
+#test this out
+least_common_multiple(8, 20)

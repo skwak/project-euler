@@ -9,27 +9,7 @@
 # start off with 2520 example
 
 @all_nums = [*1..10]
-@prime_nums = {}
-
-# find the highest prime of each number in the array, as well as the count/power
-def find_prime(num)
-  (1..num).each do |n|
-    if (num%n == 0) && (is_prime?(n) == true)
-      if (@prime_nums[n] == nil)
-        @prime_nums[n] = 1
-      else 
-        @prime_nums[n] += 1
-      end
-    end
-  end
-  puts @prime_nums
-end
-
-def get_primes(array)
-  array.each do |num|
-    
-  end
-end
+@prime_nums = []
 
 def is_prime?(num)
   count = 0
@@ -38,13 +18,54 @@ def is_prime?(num)
       count+=1
     end
   end
-  if count==2
+  
+  if (count==2)
     true
   else
     false
   end
 end 
 
-puts "3: " + "#{is_prime?(3)}"
-puts "6: " + "#{is_prime?(6)}"
+# find the highest prime of each number in the array, as well as the count/power
+def find_prime(num)
+  prime_number_hash = {}
+  (1..num).each do |n|
+    if (num%n == 0) && (is_prime?(n) == true)
+      if (prime_number_hash[n] == nil)
+        prime_number_hash[n] = 1
+      else 
+        prime_number_hash[n] += 1
+      end
+    end
+  end
+  puts prime_number_hash
+end
+
+def find_prime_count(num, original_num)
+  @prime_count = 0
+  keep_counting(num, original_num)
+end
+
+def keep_counting(num, original_num)
+  if (is_prime?(original_num) == false)
+    if (original_num%num == 0) 
+      @prime_count+=1
+      new_num = original_num/num
+      keep_counting(num, new_num)
+    end
+  end
+end
+
+find_prime_count(3, 18)
+puts @prime_count
+
+def get_primes(array)
+  array.each do |number|
+    find_prime(number) 
+  end
+  puts @prime_nums
+end
+
+
 find_prime(15)
+find_prime(8)

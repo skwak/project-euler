@@ -13,13 +13,21 @@
 
 # find the highest prime of each number in the array, as well as the count/power
 def find_prime(num)
-   
+  (1..num).each do |n|
+    if (num%n == 0) && (is_prime?(n) == true)
+      if (@prime_nums[n] == nil)
+        @prime_nums[n] = 1
+      else 
+        @prime_nums[n] += 1
+      end
+    end
+  end
+  puts @prime_nums
 end
 
 def get_primes(array)
   array.each do |num|
-    find_prime(num)
-    #add to hash
+    
   end
 end
 
@@ -39,5 +47,4 @@ end
 
 puts "3: " + "#{is_prime?(3)}"
 puts "6: " + "#{is_prime?(6)}"
-puts "11: " + "#{is_prime?(11)}"
-puts "15: " + "#{is_prime?(15)}"
+find_prime(15)

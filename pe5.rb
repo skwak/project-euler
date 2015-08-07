@@ -6,48 +6,38 @@
 # The LCM of (1,2,3,4,5,6,7,8,9,10) = 2520
 
 
-  def find_prime(a, b)
-    @factors = []
-    @factors2 = []
+# start off with 2520 example
 
+@all_nums = [*1..10]
+@prime_nums = {}
+
+# find the highest prime of each number in the array, as well as the count/power
+def find_prime(num)
+   
+end
+
+def get_primes(array)
+  array.each do |num|
+    find_prime(num)
+    #add to hash
   end
-  # def greatest_common_factor(a, b)
-  #   @factors = []
-  #   @factors2 = []
-  #   @factors3 = []
-  #   (2..a).each do |num|
-  #     if a != num
-  #       @factors << num if a % num == 0
-  #     end
-  #   end
-  # 
-  #   (2..b).each do |num|
-  #     if b != num
-  #       @factors2 << num if b % num == 0
-  #     end
-  #   end
-  # 
-  #   @factors.each do |num|
-  #     @factors3 << num if @factors2.include?(num)
-  #   end
-  #   
-  #   @max_factor = @factors3.max
-  #   @max_factor = 1 if @max_factor.nil?
-  # end
-  # 
-  # #greatest common factor of 8 and 20 is 4
-  # def least_common_multiple(a, b)
-  #   greatest_common_factor(a, b)
-  #   (a*b)/@max_factor
-  # end
-  # 
-  # def find_lcm_of_big_array(arr)
-  #   @new_arr = []
-  #   until arr.empty?
-  #     @new_arr << least_common_multiple(arr[0], arr[1])
-  #     arr.shift
-  #   end
-  #   
-  # end
-  
-  
+end
+
+def is_prime?(num)
+  count = 0
+  (1..num).each do |n|
+    if (num%n == 0)
+      count+=1
+    end
+  end
+  if count==2
+    true
+  else
+    false
+  end
+end 
+
+puts "3: " + "#{is_prime?(3)}"
+puts "6: " + "#{is_prime?(6)}"
+puts "11: " + "#{is_prime?(11)}"
+puts "15: " + "#{is_prime?(15)}"

@@ -47,17 +47,18 @@ def find_prime_count(num, original_num)
 end
 
 def keep_counting(num, original_num)
-  if (is_prime?(original_num) == false)
+  if (!is_prime?(original_num))
     if (original_num%num == 0) 
       @prime_count+=1
       new_num = original_num/num
       keep_counting(num, new_num)
     end
+  else
+    if (original_num == num)
+      @prime_count+=1
+    end
   end
 end
-
-find_prime_count(3, 18)
-puts @prime_count
 
 def get_primes(array)
   array.each do |number|
@@ -65,7 +66,3 @@ def get_primes(array)
   end
   puts @prime_nums
 end
-
-
-find_prime(15)
-find_prime(8)

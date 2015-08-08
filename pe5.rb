@@ -26,24 +26,10 @@ def is_prime?(num)
   end
 end 
 
-# find the highest prime of each number in the array, as well as the count/power
-def find_prime(num)
-  prime_number_hash = {}
-  (1..num).each do |n|
-    if (num%n == 0) && (is_prime?(n) == true)
-      if (prime_number_hash[n] == nil)
-        prime_number_hash[n] = 1
-      else 
-        prime_number_hash[n] += 1
-      end
-    end
-  end
-  puts prime_number_hash
-end
-
 def find_prime_count(num, original_num)
   @prime_count = 0
   keep_counting(num, original_num)
+  @prime_count
 end
 
 def keep_counting(num, original_num)
@@ -66,3 +52,16 @@ def get_primes(array)
   end
   puts @prime_nums
 end
+
+def find_prime(num)
+  prime_number_hash = {}
+  (1..num).each do |n|
+    if (num%n == 0) && (is_prime?(n) == true)
+      
+      prime_number_hash[n] = find_prime_count(n, num) 
+    end
+  end
+  puts prime_number_hash
+end
+
+find_prime(12)

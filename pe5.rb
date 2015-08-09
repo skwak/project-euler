@@ -109,6 +109,6 @@ def multiply_biggest_primes(array)
   puts biggest
 end
 
-@all_nums = [*1..10]
+@all_nums = [*1..20]
 get_primes(@all_nums)
 #multiply_biggest_primes(@all_nums)

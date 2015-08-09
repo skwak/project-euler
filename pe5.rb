@@ -93,22 +93,5 @@ def get_primes(array)
   multiply_all(biggest_primes)
 end
 
-
-  # @prime_nums.each do |hash|
-      #sorted_array = hash.sort_by { |number, count| number }
-      #number = sorted_array[-1][0]
-      #power = sorted_array[-1][1]
-      #@biggest_primes_multiplied << number**power
-    # end
-
-def multiply_biggest_primes(array)
-  get_primes(array)
-
-  puts @biggest_primes_multiplied
-  biggest = @biggest_primes_multiplied.inject{ |product, n| product * n }
-  puts biggest
-end
-
 @all_nums = [*1..20]
 get_primes(@all_nums)
-#multiply_biggest_primes(@all_nums)

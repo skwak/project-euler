@@ -8,9 +8,11 @@
 
 # start off with 2520 example
 
-@all_nums = [*1..10]
 @prime_nums = []
 
+@biggest_primes_multiplied = []
+
+# checks if number is prime (however, does not include 1 for now)
 def is_prime?(num)
   count = 0
   (1..num).each do |n|
@@ -19,7 +21,7 @@ def is_prime?(num)
     end
   end
   
-  if (count==2)
+  if (count == 2)
     true
   else
     false
@@ -46,22 +48,67 @@ def keep_counting(num, original_num)
   end
 end
 
-def get_primes(array)
-  array.each do |number|
-    find_prime(number) 
-  end
-  puts @prime_nums
-end
-
 def find_prime(num)
   prime_number_hash = {}
   (1..num).each do |n|
     if (num%n == 0) && (is_prime?(n) == true)
-      
       prime_number_hash[n] = find_prime_count(n, num) 
     end
   end
-  puts prime_number_hash
+  @prime_nums << prime_number_hash
 end
 
-find_prime(12)
+def get_sum(final_multiplied_primes)
+  final_multiplied_primes.inject { |product, n| product * n }
+end
+
+def multiply_all(hash_of_primes)
+  hash_of_primes.each do |k, v|
+   @biggest_primes_multiplied << k**v
+  end
+
+  puts get_sum(@biggest_primes_multiplied)
+end
+
+def get_primes(array)
+  array.each do |number|
+    find_prime(number) 
+  end
+  
+  biggest_primes = {}
+  @prime_nums.each do |hash|
+    number_in_question = hash.keys[0]
+    if (biggest_primes.empty?)
+      biggest_primes.merge!(hash)
+    else
+      if (biggest_primes.has_key?(number_in_question))
+        if (hash[number_in_question] > biggest_primes[number_in_question])
+          biggest_primes.merge!(hash)
+        end
+      else
+        biggest_primes.merge!(hash)
+      end
+    end
+  end
+  multiply_all(biggest_primes)
+end
+
+
+  # @prime_nums.each do |hash|
+      #sorted_array = hash.sort_by { |number, count| number }
+      #number = sorted_array[-1][0]
+      #power = sorted_array[-1][1]
+      #@biggest_primes_multiplied << number**power
+    # end
+
+def multiply_biggest_primes(array)
+  get_primes(array)
+
+  puts @biggest_primes_multiplied
+  biggest = @biggest_primes_multiplied.inject{ |product, n| product * n }
+  puts biggest
+end
+
+@all_nums = [*1..10]
+get_primes(@all_nums)
+#multiply_biggest_primes(@all_nums)

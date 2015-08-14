@@ -12,11 +12,7 @@ def is_prime?(number)
       count += 1 if (number % n == 0)
     end
     
-    if (count >= 1)
-      false
-    else
-      true
-    end 
+    if (count >= 1) ? false : true
   end
 end
 

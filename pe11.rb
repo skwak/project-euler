@@ -46,17 +46,121 @@ grid_number =
  20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
  01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
 
-#format horizontally
-horizontal_nums= grid_number.split("/n")
+#all the largest sums go here
+@largest_sums = []
 
-#format vertically
 all_nums = grid_number.split(" ")
 
-#create arrays for each column
+#look at horizontal numbers
+horizontal_nums= grid_number.split("/n")
+
+i = 0
+20.times do |array|
+  name = "row_" + i.to_s
+  instance_variable_set("@#{name}", [])
+  i+=1
+end
+
+(0...400).each do |index|
+ 
+  if (index < 20) 
+    @row_0 << all_nums[index].to_i
+  elsif (index < 40)
+    @row_1 << all_nums[index].to_i 
+  elsif (index < 60)
+    @row_2 << all_nums[index].to_i
+  elsif (index < 80) 
+    @row_3 << all_nums[index].to_i
+  elsif (index < 100)
+    @row_4 << all_nums[index].to_i
+  elsif (index < 120)
+    @row_5 << all_nums[index].to_i
+  elsif (index < 140)
+    @row_6 << all_nums[index].to_i
+  elsif (index < 160)
+    @row_7 << all_nums[index].to_i
+  elsif (index < 180)
+    @row_8 << all_nums[index].to_i
+  elsif (index < 200)
+    @row_9 << all_nums[index].to_i
+  elsif (index < 220)
+    @row_10 << all_nums[index].to_i
+  elsif (index < 240) 
+    @row_11 << all_nums[index].to_i
+  elsif (index < 260)
+    @row_12 << all_nums[index].to_i
+  elsif (index < 280)
+    @row_13 << all_nums[index].to_i
+  elsif (index < 300)
+    @row_14 << all_nums[index].to_i
+  elsif (index < 320)
+    @row_15 << all_nums[index].to_i
+  elsif (index < 340)
+    @row_16 << all_nums[index].to_i
+  elsif (index < 360)
+    @row_17 << all_nums[index].to_i
+  elsif (index < 380)
+    @row_18 << all_nums[index].to_i
+  elsif (index < 400)
+    @row_19 << all_nums[index].to_i
+  end
+end
+
+def find_greatest(array)
+  first_index = 0
+  last_index = 3
+  sum_arr = []
+  until last_index == 20
+    add_array = array[first_index..last_index]
+    sum_arr << add_array.inject { |sum, n| sum + n }
+    first_index += 1
+    last_index += 1
+  end
+  sum_arr.max
+end
+
+def find_biggest_of_greatest
+   all_the_greats = []
+   all_the_greats << find_greatest(@row_0)
+   all_the_greats << find_greatest(@row_1)
+   all_the_greats << find_greatest(@row_2)
+   all_the_greats << find_greatest(@row_3)
+   all_the_greats << find_greatest(@row_4)
+   all_the_greats << find_greatest(@row_5)
+   all_the_greats << find_greatest(@row_6)
+   all_the_greats << find_greatest(@row_7)
+   all_the_greats << find_greatest(@row_8)
+   all_the_greats << find_greatest(@row_9)
+   all_the_greats << find_greatest(@row_10)
+   all_the_greats << find_greatest(@row_11)
+   all_the_greats << find_greatest(@row_12)
+   all_the_greats << find_greatest(@row_13)
+   all_the_greats << find_greatest(@row_14)
+   all_the_greats << find_greatest(@row_15)
+   all_the_greats << find_greatest(@row_16)
+   all_the_greats << find_greatest(@row_17)
+   all_the_greats << find_greatest(@row_18)
+   all_the_greats << find_greatest(@row_19)
+   puts all_the_greats.max
+end
+
+@largest_sums << find_biggest_of_greatest
+
+
+
+#look at vertical numbers
 i = 0
 20.times do |array|
   name = "col_" + i.to_s
   instance_variable_set("@#{name}", [])
   i+=1
-end 
-i
+end
+
+index = 0
+until (index == 400)
+  @col_0 << all_nums[index].to_i
+  index += 20
+end
+
+puts @col_0
+

@@ -51,8 +51,7 @@ grid_number =
 
 all_nums = grid_number.split(" ")
 
-#look at horizontal numbers
-horizontal_nums= grid_number.split("/n")
+horizontal_nums = grid_number.split("/n")
 
 i = 0
 20.times do |array|
@@ -61,8 +60,14 @@ i = 0
   i+=1
 end
 
-(0...400).each do |index|
- 
+i = 0
+20.times do |array|
+  name = "col_" + i.to_s
+  instance_variable_set("@#{name}", [])
+  i+=1
+end
+
+(0...400).each do |index| 
   if (index < 20) 
     @row_0 << all_nums[index].to_i
   elsif (index < 40)
@@ -106,6 +111,60 @@ end
   end
 end
 
+
+def add_row_nums_to_column(col, index)
+  (0..19).each do |row_num|
+    row_name = "@row_" + row_num.to_s
+    col << eval(row_name)[index]
+  end
+end
+
+index = 0
+until index == 20
+  if (index == 0)
+    add_row_nums_to_column(@col_0, index)
+  elsif (index == 1)
+    add_row_nums_to_column(@col_1, index)
+  elsif (index == 2)
+    add_row_nums_to_column(@col_2, index)
+  elsif (index == 3)
+    add_row_nums_to_column(@col_3, index)
+  elsif (index == 4)
+    add_row_nums_to_column(@col_4, index)
+  elsif (index == 5)
+    add_row_nums_to_column(@col_5, index)
+  elsif (index == 6)
+    add_row_nums_to_column(@col_6, index)
+  elsif (index == 7)
+    add_row_nums_to_column(@col_7, index)
+  elsif (index == 8)
+    add_row_nums_to_column(@col_8, index)
+  elsif (index == 9)
+    add_row_nums_to_column(@col_9, index)
+  elsif (index == 10)
+    add_row_nums_to_column(@col_10, index)
+  elsif (index == 11)
+    add_row_nums_to_column(@col_11, index)
+  elsif (index == 12)
+    add_row_nums_to_column(@col_12, index)
+  elsif (index == 13)
+    add_row_nums_to_column(@col_13, index)
+  elsif (index == 14)
+    add_row_nums_to_column(@col_14, index)
+  elsif (index == 15)
+    add_row_nums_to_column(@col_15, index)
+  elsif (index == 16)
+    add_row_nums_to_column(@col_16, index)
+  elsif (index == 17)
+    add_row_nums_to_column(@col_17, index)
+  elsif (index == 18)
+    add_row_nums_to_column(@col_18, index)
+  elsif (index == 19)
+    add_row_nums_to_column(@col_19, index)
+  end
+  index += 1
+end
+
 def find_greatest(array)
   first_index = 0
   last_index = 3
@@ -119,48 +178,22 @@ def find_greatest(array)
   sum_arr.max
 end
 
-def find_biggest_of_greatest
-   all_the_greats = []
-   all_the_greats << find_greatest(@row_0)
-   all_the_greats << find_greatest(@row_1)
-   all_the_greats << find_greatest(@row_2)
-   all_the_greats << find_greatest(@row_3)
-   all_the_greats << find_greatest(@row_4)
-   all_the_greats << find_greatest(@row_5)
-   all_the_greats << find_greatest(@row_6)
-   all_the_greats << find_greatest(@row_7)
-   all_the_greats << find_greatest(@row_8)
-   all_the_greats << find_greatest(@row_9)
-   all_the_greats << find_greatest(@row_10)
-   all_the_greats << find_greatest(@row_11)
-   all_the_greats << find_greatest(@row_12)
-   all_the_greats << find_greatest(@row_13)
-   all_the_greats << find_greatest(@row_14)
-   all_the_greats << find_greatest(@row_15)
-   all_the_greats << find_greatest(@row_16)
-   all_the_greats << find_greatest(@row_17)
-   all_the_greats << find_greatest(@row_18)
-   all_the_greats << find_greatest(@row_19)
-   puts all_the_greats.max
+def find_biggest_rows
+  all_the_greats = []
+  (0..19).each do |num|
+    row_name = "@row_" + num.to_s
+    all_the_greats[num] = find_greatest(eval(row_name))
+  end
+  all_the_greats.max
 end
+@largest_sums << find_biggest_rows
 
-@largest_sums << find_biggest_of_greatest
-
-
-
-#look at vertical numbers
-i = 0
-20.times do |array|
-  name = "col_" + i.to_s
-  instance_variable_set("@#{name}", [])
-  i+=1
+def find_biggest_cols
+  all_the_col_greats = []
+  (0..19).each do |num|
+    col_name = "@col_" + num.to_s
+    all_the_col_greats[num] = find_greatest(eval(col_name))
+  end
+  all_the_col_greats.max
 end
-
-index = 0
-until (index == 400)
-  @col_0 << all_nums[index].to_i
-  index += 20
-end
-
-puts @col_0
-
+@largest_sums << find_biggest_cols

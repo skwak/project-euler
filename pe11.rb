@@ -45,8 +45,10 @@ grid_number =
  20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
  20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
  01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
+# SLOW AND PAINFUL WAY CUZ I WANT TO DO IT MYSELF FIRST BEFORE I SEE THE PATTERNS
+# UGH!!
 
-#all the largest sums go here
+# all the largest sums go here
 @largest_sums = []
 
 all_nums = grid_number.split(" ")
@@ -165,6 +167,49 @@ until index == 20
   index += 1
 end
 
+#left-to-right-and-down diagonal numbers
+def put_in_diagonal_nums(starting_index, starting_row)
+  ltr_name = "@ltr_down_" + starting_index.to_s
+  instance_variable_set("#{ltr_name}", [])
+  start = 0
+  index = starting_index
+  until (start == (20 - starting_index - starting_row))
+    row_name = "@row_" + index.to_s
+    eval(ltr_name)[start] = eval(row_name)[index]
+    index += 1
+    start += 1
+  end
+end
+
+starting_index = 0
+starting_row = 0
+num = 0
+while (starting_index < 17)
+  put_in_diagonal_nums(starting_index, starting_row)
+  starting_index += 1 
+  num += 1
+end
+
+puts @ltr_down_0.to_s
+puts @ltr_down_1.to_s
+puts @ltr_down_2.to_s
+puts @ltr_down_3.to_s
+puts @ltr_down_4.to_s
+puts @ltr_down_5.to_s
+puts @ltr_down_6.to_s
+puts @ltr_down_7.to_s
+puts @ltr_down_8.to_s
+puts @ltr_down_9.to_s
+puts @ltr_down_10.to_s
+puts @ltr_down_11.to_s
+puts @ltr_down_12.to_s
+puts @ltr_down_13.to_s
+puts @ltr_down_14.to_s
+puts @ltr_down_15.to_s
+puts @ltr_down_16.to_s
+
+
+
 def find_greatest(array)
   first_index = 0
   last_index = 3
@@ -177,6 +222,7 @@ def find_greatest(array)
   end
   sum_arr.max
 end
+puts find_greatest([*1..20])
 
 def find_biggest_rows
   all_the_greats = []
